@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="85115D46-25AF-6BB3-1AED-54EFF32C9CBA" name="categorias">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:18:23 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_categoria" id="B77F843B-0AF6-D9F2-A3B0-53666994D877">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:19:46 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="8CDED0C0-F64C-D2DE-111A-FC59B6262D5D">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:19:46 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2861C0AF-B865-FAF6-FD82-6CD9E85653A8" name="categorias_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:19:46 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B77F843B-0AF6-D9F2-A3B0-53666994D877"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A52F9858-A03B-E5D7-8B0B-1F3BEAB6016E" containerWithKeyObject="368F20DD-3E5A-686A-7A33-6627B386DDF8" localFKIndex="549349DA-FCA1-9BBC-B839-8F4F3B055754" name="ordenes_vendedores_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:42:59 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<referredTableLongName>vendedores</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6D6CFBF2-D826-8B83-19EC-F62632DF0127</referredTableID>
+<keyObject>0A87568C-7E4B-F561-C7AF-CB51A2661D77</keyObject>
+<referredKeyID>0A87568C-7E4B-F561-C7AF-CB51A2661D77</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_vendedor</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

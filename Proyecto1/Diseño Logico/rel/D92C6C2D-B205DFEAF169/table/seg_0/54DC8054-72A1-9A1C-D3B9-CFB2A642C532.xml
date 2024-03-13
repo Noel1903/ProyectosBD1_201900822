@@ -1,0 +1,152 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="54DC8054-72A1-9A1C-D3B9-CFB2A642C532" name="clientes">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:30:16 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<ordsAlias>table_7</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_cliente" id="2D8B240E-3F53-A3E0-8B80-A239CED6276B">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="BD13720A-F45A-210F-30D7-B0FAC3D02CD1">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Apellido" id="12C3847C-17CA-02CD-A1C2-EC786E4530A2">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Direccion" id="289C2898-F4CF-1BD6-7C7B-BAD0D8823266">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Telefono" id="27FE7C27-F3A0-A7EC-E5F2-1C920005165A">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Tarjeta" id="6B9E5825-0CE4-8C76-7468-F0DDB8C9F741">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>21</dataTypeSize>
+<ownDataTypeParameters>21,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Edad" id="278DBE37-1CBF-D192-E4EC-81BF36DF2D60">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Salario" id="DEC59F42-3F29-F32A-CF27-CBB03963D9ED">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Genero" id="C1605D6A-53BB-8D78-D0A8-E16D6A363ABD">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_pais" id="8BED06BF-F4CE-9BD9-80A4-8D3D1F50BBCB">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D5E26246-D0B8-401E-AA4A-660E7258076C" referredColumn="5C57FA3D-4466-D287-DCAF-A7B80725996A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8BC46E7A-BFDC-88AE-C71E-7A62388F9472" name="clientes_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D8B240E-3F53-A3E0-8B80-A239CED6276B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="27C72AA4-FDDA-A5A4-FB4C-58B6251763A1" name="TABLE_7_paises_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:34:35 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8BED06BF-F4CE-9BD9-80A4-8D3D1F50BBCB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6D6CFBF2-D826-8B83-19EC-F62632DF0127" name="vendedores">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:25:54 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_vendedor" id="E63F7397-DCF3-B70C-5E57-159C1D3904B5">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:27:25 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="705B503D-B44B-C57A-DA2C-62B828192A78">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:27:25 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_pais" id="09DC6045-2E79-42BD-524B-8D22AF9FAC29">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:27:25 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E018AEB9-AFB0-1F29-7FC1-84B988F84FCC" referredColumn="5C57FA3D-4466-D287-DCAF-A7B80725996A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0A87568C-7E4B-F561-C7AF-CB51A2661D77" name="vendedores_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:27:25 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E63F7397-DCF3-B70C-5E57-159C1D3904B5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ADD2FBED-EF34-B05F-4301-AE4929BF7CDF" name="TABLE_6_paises_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-11 23:27:25 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09DC6045-2E79-42BD-524B-8D22AF9FAC29"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
