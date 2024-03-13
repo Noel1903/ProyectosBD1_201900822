@@ -3,20 +3,13 @@
 --   sitio:      SQL Server 2012
 --   tipo:      SQL Server 2012
 
-
-
 CREATE TABLE categorias 
     (
      id_categoria INTEGER NOT NULL , 
      nombre CHAR (30) 
-    )
-GO
+    );
 
-ALTER TABLE categorias ADD CONSTRAINT categorias_PK PRIMARY KEY CLUSTERED (id_categoria)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
+ALTER TABLE categorias ADD CONSTRAINT categorias_PK PRIMARY KEY CLUSTERED (id_categoria);
 
 CREATE TABLE clientes 
     (
@@ -30,14 +23,9 @@ CREATE TABLE clientes
      Salario INTEGER , 
      Genero CHAR (1) , 
      id_pais INTEGER NOT NULL 
-    )
-GO
+    );
 
-ALTER TABLE clientes ADD CONSTRAINT clientes_PK PRIMARY KEY CLUSTERED (id_cliente)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
+ALTER TABLE clientes ADD CONSTRAINT clientes_PK PRIMARY KEY CLUSTERED (id_cliente);
 
 CREATE TABLE ordenes 
     (
@@ -48,14 +36,9 @@ CREATE TABLE ordenes
      id_vendedor INTEGER NOT NULL , 
      id_producto INTEGER NOT NULL , 
      cantidad INTEGER 
-    )
-GO
+    );
 
-ALTER TABLE ordenes ADD CONSTRAINT ordenes_PK PRIMARY KEY CLUSTERED (id_orden)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
+ALTER TABLE ordenes ADD CONSTRAINT ordenes_PK PRIMARY KEY CLUSTERED (id_orden);
 
 CREATE TABLE paises 
     (
@@ -71,28 +54,19 @@ CREATE TABLE productos
      Nombre CHAR (100) , 
      Precio FLOAT (2) , 
      id_categoria INTEGER NOT NULL 
-    )
-GO
+    );
 
-ALTER TABLE productos ADD CONSTRAINT productos_PK PRIMARY KEY CLUSTERED (id_producto)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
+ALTER TABLE productos ADD CONSTRAINT productos_PK PRIMARY KEY CLUSTERED (id_producto);
 
 CREATE TABLE vendedores 
     (
      id_vendedor INTEGER NOT NULL , 
      nombre CHAR (100) , 
      id_pais INTEGER NOT NULL 
-    )
-GO
+    );
 
-ALTER TABLE vendedores ADD CONSTRAINT vendedores_PK PRIMARY KEY CLUSTERED (id_vendedor)
-     WITH (
-     ALLOW_PAGE_LOCKS = ON , 
-     ALLOW_ROW_LOCKS = ON )
-GO
+ALTER TABLE vendedores ADD CONSTRAINT vendedores_PK PRIMARY KEY CLUSTERED (id_vendedor);
+
 
 ALTER TABLE ordenes 
     ADD CONSTRAINT ordenes_productos_FK FOREIGN KEY 
@@ -104,8 +78,7 @@ ALTER TABLE ordenes
      id_producto 
     ) 
     ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
+    ON UPDATE NO ACTION ;
 
 ALTER TABLE ordenes 
     ADD CONSTRAINT ordenes_vendedores_FK FOREIGN KEY 
@@ -117,8 +90,7 @@ ALTER TABLE ordenes
      id_vendedor 
     ) 
     ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
+    ON UPDATE NO ACTION ;
 
 ALTER TABLE productos 
     ADD CONSTRAINT TABLE_4_categorias_FK FOREIGN KEY 
@@ -130,9 +102,7 @@ ALTER TABLE productos
      id_categoria 
     ) 
     ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
+    ON UPDATE NO ACTION ;
 ALTER TABLE vendedores 
     ADD CONSTRAINT TABLE_6_paises_FK FOREIGN KEY 
     ( 
@@ -143,9 +113,7 @@ ALTER TABLE vendedores
      id_pais 
     ) 
     ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
+    ON UPDATE NO ACTION ;
 ALTER TABLE clientes 
     ADD CONSTRAINT TABLE_7_paises_FK FOREIGN KEY 
     ( 
@@ -156,8 +124,7 @@ ALTER TABLE clientes
      id_pais 
     ) 
     ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
+    ON UPDATE NO ACTION;
 
 ALTER TABLE ordenes 
     ADD CONSTRAINT TABLE_8_clientes_FK FOREIGN KEY 
@@ -169,8 +136,10 @@ ALTER TABLE ordenes
      id_cliente 
     ) 
     ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
+    ON UPDATE NO ACTION ;
+
+
+
 
 
 

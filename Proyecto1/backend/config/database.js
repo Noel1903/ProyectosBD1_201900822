@@ -6,9 +6,9 @@ const connection = mysql.createConnection({
     database: 'db_project1_sbd'
 });
 
-/*connection.connect((err)=>{
+connection.connect((err)=>{
     if(err) throw err;
     console.log('Connected to MySQL Server!');
-});*/
+});
 
 module.exports = connection;

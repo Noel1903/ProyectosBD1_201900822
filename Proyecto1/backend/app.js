@@ -1,13 +1,10 @@
 const express = require('express');
 const app = express();
-const mysql = require('./config/database')
+const routes = require('./routes/routes');
 
 app.use(express.json());
+app.use('/api', routes);
 
-mysql.connect((err)=>{
-    if(err) throw err;
-    console.log('Connected to MySQL Server!');
-});
 
 const PORT = process.env.PORT || 3000;
 
