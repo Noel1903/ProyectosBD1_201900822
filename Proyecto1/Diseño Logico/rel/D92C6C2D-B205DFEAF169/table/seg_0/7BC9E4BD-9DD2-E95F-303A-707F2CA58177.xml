@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7BC9E4BD-9DD2-E95F-303A-707F2CA58177" name="ordenes">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-14 16:01:25 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<ordsAlias>table_7</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_orden" id="8C5876A2-8013-1E54-1CD2-33A2BB8CB397">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-14 16:03:20 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="F3E86560-A776-D752-F431-05048E54A5E3">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-14 16:03:20 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_cliente" id="AEF82868-0EC2-38FA-3BE3-D2FE0E0FABD2">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-14 16:03:20 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9476BFF6-6538-23BF-A16B-007984A29A31" referredColumn="2D8B240E-3F53-A3E0-8B80-A239CED6276B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9CAAF431-9502-7DA9-D42C-10231D1E154F" name="ordenes_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-14 16:03:20 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8C5876A2-8013-1E54-1CD2-33A2BB8CB397"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F63359F2-320C-99DC-5CAE-60DDE7AC5383" name="TABLE_7_clientes_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-14 16:03:20 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AEF82868-0EC2-38FA-3BE3-D2FE0E0FABD2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

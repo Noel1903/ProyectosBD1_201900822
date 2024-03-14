@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2AEE0090-ED2C-8561-D3BC-46F70FF8D84D" containerWithKeyObject="368F20DD-3E5A-686A-7A33-6627B386DDF8" localFKIndex="90CC057D-2E6F-BA17-4D40-1ACC84D16FF3" name="ordenes_productos_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D715EA79-CD6A-EF90-BBF1-1AF831906DD5" containerWithKeyObject="ECE69DEF-E939-8C46-D69C-031FFB5BB906" localFKIndex="2A4F237E-F2D3-B0D0-AC7F-BFB0C171D723" name="TABLE_8_productos_FK">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:43:24 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <referredTableLongName>productos</referredTableLongName>
 <deleteRule>NO ACTION</deleteRule>

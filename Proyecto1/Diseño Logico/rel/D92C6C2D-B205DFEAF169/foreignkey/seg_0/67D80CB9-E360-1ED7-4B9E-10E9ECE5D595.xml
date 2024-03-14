@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A52F9858-A03B-E5D7-8B0B-1F3BEAB6016E" containerWithKeyObject="368F20DD-3E5A-686A-7A33-6627B386DDF8" localFKIndex="549349DA-FCA1-9BBC-B839-8F4F3B055754" name="ordenes_vendedores_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="67D80CB9-E360-1ED7-4B9E-10E9ECE5D595" containerWithKeyObject="ECE69DEF-E939-8C46-D69C-031FFB5BB906" localFKIndex="99706EB5-2996-7EE5-F28D-76AA76B6BB6B" name="TABLE_8_vendedores_FK">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:42:59 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <referredTableLongName>vendedores</referredTableLongName>
 <deleteRule>NO ACTION</deleteRule>

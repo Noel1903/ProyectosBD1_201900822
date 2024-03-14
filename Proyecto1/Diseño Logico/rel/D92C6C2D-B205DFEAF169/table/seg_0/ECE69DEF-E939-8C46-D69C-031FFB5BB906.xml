@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="368F20DD-3E5A-686A-7A33-6627B386DDF8" name="ordenes">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ECE69DEF-E939-8C46-D69C-031FFB5BB906" name="detalle_orden">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:39:38 UTC</createdTime>
+<createdTime>2024-03-14 16:03:41 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <ordsAlias>table_8</ordsAlias>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id_orden" id="7A512FC5-D6FC-FAD4-69E9-01B3619FA5B4">
+<Column name="id_dorden" id="6D002931-382F-2BBF-9373-387915C0D5EA">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -18,9 +18,22 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="linea_orden" id="C65D22A7-B2F0-7868-2890-88630800293E">
+<Column name="id_orden" id="2FAD8A18-F647-88AA-3E36-924E07F4DC40">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7ED6D2CE-D6EE-74A0-7173-BF154257BD91" referredColumn="8C5876A2-8013-1E54-1CD2-33A2BB8CB397"/>
+</associations>
+</Column>
+<Column name="linea_orden" id="7C0255E0-294B-D6B3-741E-F2D95A37F7D1">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -29,20 +42,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="fecha_orden" id="536D2A1D-82C2-7697-A690-6573DA777ED7">
+<Column name="id_vendedor" id="EDF6F708-083F-7D3E-2283-A190B14F5407">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
-<ownerDesignName>Diseño Logico</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="id_cliente" id="9165E528-427C-7879-BC92-F9AB579532DD">
-<createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -50,12 +52,12 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="7798C1D6-AAAB-1657-AC30-9603CFDE9C97" referredColumn="2D8B240E-3F53-A3E0-8B80-A239CED6276B"/>
+<colAssociation fkAssociation="67D80CB9-E360-1ED7-4B9E-10E9ECE5D595" referredColumn="E63F7397-DCF3-B70C-5E57-159C1D3904B5"/>
 </associations>
 </Column>
-<Column name="id_vendedor" id="05A5762E-5871-A602-B60A-B5FCDF7BEFA0">
+<Column name="id_producto" id="DC0508E8-5384-2C8A-5954-86C34C995263">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -63,25 +65,12 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="A52F9858-A03B-E5D7-8B0B-1F3BEAB6016E" referredColumn="E63F7397-DCF3-B70C-5E57-159C1D3904B5"/>
+<colAssociation fkAssociation="D715EA79-CD6A-EF90-BBF1-1AF831906DD5" referredColumn="0B6C4BC3-EBE9-3BE9-CF6B-6036BE94CAFA"/>
 </associations>
 </Column>
-<Column name="id_producto" id="F9F5433C-DAB0-8718-6966-8110816E756A">
+<Column name="cantidad" id="1AB07FF7-5BB7-AEDE-CD9D-CB40E7F0495C">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
-<ownerDesignName>Diseño Logico</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="2AEE0090-ED2C-8561-D3BC-46F70FF8D84D" referredColumn="0B6C4BC3-EBE9-3BE9-CF6B-6036BE94CAFA"/>
-</associations>
-</Column>
-<Column name="cantidad" id="13D9179D-D732-DD5C-CF67-739677E9331A">
-<createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -92,45 +81,45 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="6ED4CD0C-74CD-0BA0-143B-630D75144F36" name="ordenes_PK">
+<ind_PK_UK id="9FFB49EF-2F72-3AFD-53B7-FE26D1D1A8CB" name="detalle_orden_PK">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="7A512FC5-D6FC-FAD4-69E9-01B3619FA5B4"/>
+<colUsage columnID="6D002931-382F-2BBF-9373-387915C0D5EA"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C1E6F2D0-D271-DBA0-7C07-06C493ABAAA5" name="TABLE_8_clientes_FK">
+<ind_PK_UK id="2A055FED-F349-3C40-16FB-4A2E57909F13" name="TABLE_8_ordenes_FK">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:41:58 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="9165E528-427C-7879-BC92-F9AB579532DD"/>
+<colUsage columnID="2FAD8A18-F647-88AA-3E36-924E07F4DC40"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="549349DA-FCA1-9BBC-B839-8F4F3B055754" name="ordenes_vendedores_FK">
+<ind_PK_UK id="99706EB5-2996-7EE5-F28D-76AA76B6BB6B" name="TABLE_8_vendedores_FK">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:42:59 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="05A5762E-5871-A602-B60A-B5FCDF7BEFA0"/>
+<colUsage columnID="EDF6F708-083F-7D3E-2283-A190B14F5407"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="90CC057D-2E6F-BA17-4D40-1ACC84D16FF3" name="ordenes_productos_FK">
+<ind_PK_UK id="2A4F237E-F2D3-B0D0-AC7F-BFB0C171D723" name="TABLE_8_productos_FK">
 <createdBy>osmar</createdBy>
-<createdTime>2024-03-11 23:43:24 UTC</createdTime>
+<createdTime>2024-03-14 16:07:30 UTC</createdTime>
 <ownerDesignName>Diseño Logico</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="F9F5433C-DAB0-8718-6966-8110816E756A"/>
+<colUsage columnID="DC0508E8-5384-2C8A-5954-86C34C995263"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

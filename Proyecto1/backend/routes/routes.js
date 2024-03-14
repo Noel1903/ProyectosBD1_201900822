@@ -6,26 +6,200 @@ const db = require('../config/database');
 
 router.post('/data-upload',(req,res)=>{
     const csvPaises = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/paises.csv';
-    const values = [];
+    const csvCategorias = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/Categorias.csv';
+    const csvClientes = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/clientes.csv';
+    const csvProductos = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/productos.csv';
+    const csvOrdenes = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/ordenes.csv';
+    const csvVendedores = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/vendedores.csv';
+    const valuesPaises = [];
+    const valuesCategorias = [];
+    const valuesClientes = [];
+    const valuesProductos = [];
+    //const valuesOrdenes = [];
+    const valuesVendedores = [];
+    
+    
+
+
+
+
+
+
+    //Se cargan los paises
     fs.createReadStream(csvPaises)
     .pipe(csvParser({separator: ';'}))
     .on('data', (row) => {
-        values.push([row.id_pais, row.nombre]);
+        //console.log(row);
+        valuesPaises.push([row.id_pais, row.nombre]);
     })
     .on('end', () => {
         //console.log(values);
-        const placeholders = values.map(() => '(?)').join(',');
+        const placeholders = valuesPaises.map(() => '(?)').join(',');
         console.log('cargando paises...');
-        db.query(`INSERT INTO paises (id_pais, nombre) VALUES ${placeholders}`, values, (err, result) => {
+        db.query(`INSERT INTO paises (id_pais, nombre) VALUES ${placeholders}`, valuesPaises, (err, result) => {
             if(err){
                 console.log(err);
             }
         })
-        res.send('Paises cargados');
+        //res.send('Paises cargados');
     })
     .on('error', (err) => {
         res.send(err);
     });
+
+
+    //Se cargan las categorias
+    fs.createReadStream(csvCategorias)
+    .pipe(csvParser({separator: ';'}))
+    .on('data', (row) => {
+        valuesCategorias.push([row.id_categoria, row.nombre]);
+    })
+    .on('end', () => {
+        //console.log(values);
+        const placeholders = valuesCategorias.map(() => '(?)').join(',');
+        console.log('cargando categorias...');
+        db.query(`INSERT INTO categorias (id_categoria, nombre) VALUES ${placeholders}`, valuesCategorias, (err, result) => {
+            if(err){
+                console.log(err);
+            }
+        })
+        //res.send('Categorias cargadas');
+    })
+    .on('error', (err) => {
+        res.send(err);
+    });
+
+    //Se cargan los clientes
+    fs.createReadStream(csvClientes)
+    .pipe(csvParser({separator: ';'}))
+    .on('data', (row) => {
+        valuesClientes.push([row.id_cliente,row.Nombre,row.Apellido,row.Direccion,row.Telefono,row.Tarjeta,row.Edad,row.Salario,row.Genero,row.id_pais]);
+    })
+    .on('end', () => {
+        //console.log(values);
+        const placeholders = valuesClientes.map(() => '(?)').join(',');
+        console.log('cargando clientes...');
+        db.query(`INSERT INTO clientes (id_cliente,Nombre,Apellido,Direccion,Telefono,Tarjeta,Edad,Salario,Genero,id_pais) VALUES ${placeholders}`, valuesClientes, (err, result) => {
+            if(err){
+                console.log(err);
+            }
+        })
+        //res.send('Categorias cargadas');
+    })
+    .on('error', (err) => {
+        res.send(err);
+    });
+
+    //Se cargan los productos
+    fs.createReadStream(csvProductos)
+    .pipe(csvParser({separator: ';'}))
+    .on('data', (row) => {
+        valuesProductos.push([row.id_producto,row.Nombre,row.Precio,row.id_categoria]);
+    })
+    .on('end', () => {
+        //console.log(values);
+        const placeholders = valuesProductos.map(() => '(?)').join(',');
+        console.log('cargando productos...');
+        db.query(`INSERT INTO productos (id_producto,Nombre,Precio,id_categoria) VALUES ${placeholders}`, valuesProductos, (err, result) => {
+            if(err){
+                console.log(err);
+            }
+        })
+        //res.send('Productos cargados');
+    })
+    .on('error', (err) => {
+        res.send(err);
+    });
+
+    //Se cargan los vendedores
+    fs.createReadStream(csvVendedores)
+    .pipe(csvParser({separator: ';'}))
+    .on('data', (row) => {
+        valuesVendedores.push([row.id_vendedor,row.nombre,row.id_pais]);
+    })
+    .on('end', () => {
+        //console.log(values);
+        const placeholders = valuesVendedores.map(() => '(?)').join(',');
+        console.log('cargando vendedores...');
+        db.query(`INSERT INTO vendedores (id_vendedor,nombre,id_pais) VALUES ${placeholders}`, valuesVendedores, (err, result) => {
+            if(err){
+                console.log(err);
+            }
+        })
+        //res.send('Vendedores cargados');
+    })
+    .on('error', (err) => {
+        res.send(err);
+    });
+
+    //Se cargan las ordenes
+    let valoresOrdenes = new Set(); // Utilizamos un Set para almacenar las filas únicas
+    fs.createReadStream(csvOrdenes)
+    .pipe(csvParser({
+        separator: ';',
+        mapHeaders: ({ header }) => header.trim(), // Eliminar espacios en los encabezados
+        mapValues: ({ header, index, value }) => {
+            if (header === 'id_orden') return parseInt(value); // Convertir 'id_orden' en un número
+            return value; // Mantener otros valores igual
+        }
+    }))
+    .on('data', (row) => {
+        const clave = `${row.id_orden}-${row.fecha_orden}-${row.id_cliente}`;
+        valoresOrdenes.add(clave);
+        
+    })
+    .on('end', () => {
+        const clavesUnicas = Array.from(valoresOrdenes);
+
+        // Aquí puedes continuar con tu lógica para insertar los datos en la base de datos
+        console.log('cargando ordenes...');
+
+        // Ejemplo de cómo iterar sobre las claves únicas e insertar en la base de datos
+        for (const clave of clavesUnicas) {
+            const [id_orden, fecha_orden, id_cliente] = clave.split('-');
+            // Ejemplo de inserción en la base de datos (reemplaza esto con tu lógica real)
+            db.query(`INSERT INTO ordenes (id_orden, fecha, id_cliente) VALUES (?, ?, ?)`, [id_orden, fecha_orden, id_cliente], (err, result) => {
+                if (err) {
+                    console.log('Error al insertar datos en la base de datos:', err);
+                }
+            });
+        }
+        
+    });
+    //Se cargan los detalles de ordenes
+    const detailOrders = [];
+    let id_dorden = 1;
+    fs.createReadStream(csvOrdenes)
+    .pipe(csvParser({
+        separator: ';',
+        mapHeaders: ({ header }) => header.trim(), // Eliminar espacios en los encabezados
+        mapValues: ({ header, index, value }) => {
+            if (header === 'id_orden') return parseInt(value); // Convertir 'id_orden' en un número
+            return value; // Mantener otros valores igual
+        }
+    }))
+    .on('data', (row) => {
+        detailOrders.push([id_dorden,row.id_orden,row.linea_orden,row.id_vendedor,row.id_producto,row.cantidad]);
+        id_dorden++;
+    })
+    .on('end', () => {
+        //console.log(values);
+        const placeholders = detailOrders.map(() => '(?)').join(',');
+        console.log('cargando detalles de ordenes...');
+        db.query(`INSERT INTO detalle_orden (id_dorden,id_orden,linea_orden,id_vendedor,id_producto,cantidad) VALUES ${placeholders}`, detailOrders, (err, result) => {
+            if(err){
+                console.log(err);
+            }
+        })
+       // res.send('Detalles de ordenes cargados');
+    })
+    .on('error', (err) => {
+        res.send(err);
+    });
+    console.log('Datos cargados correctamente');
+    res.send('Datos cargados correctamente');
+    
+
     
 });
 
