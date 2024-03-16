@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="ECE09E27-B7F2-2A59-4E6D-8E4B4AC8080C" name="detalle_orden">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:02:49 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_dorden" id="26C17315-050E-831E-74A5-D621A7F4C555">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:03:04 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_orden" id="F930CA5D-1B4B-3691-FBCC-1430706731C8">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:03:16 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="linea_orden" id="BAF7F5AB-C97D-5BCC-6EC9-50B961EDB6F6">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:03:29 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_vendedor" id="B568A425-17F1-0187-2A7C-A896A21D9AA1">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:03:50 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_producto" id="9CE9B6C4-A454-75D2-206F-C8809DB78483">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:04:09 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cantidad" id="E7B9415E-2608-9E3A-C003-C7C836051ED3">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:04:21 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_orden1" id="6BF1CD8B-1A9D-A42E-68D3-E8CA52DB38F6">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:04:49 UTC</createdTime>
+<generatorID>FB0ABA49-DCFA-2B14-A16B-E7CA949AB458</generatorID>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<referedAttribute>308FC4F1-8032-2010-CE81-6FAC7C0E3298</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_producto1" id="EBDAC37D-E97D-F0D0-3CF1-7E939F480E0A">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:05:21 UTC</createdTime>
+<generatorID>677622F6-A581-A775-CAE6-85E65933A7B9</generatorID>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<referedAttribute>A88B1793-832D-45D4-D65F-CE16FB8D4DDB</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_vendedor1" id="86727A59-83AD-7F26-2957-871ABFE77C50">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:10:49 UTC</createdTime>
+<generatorID>680A0970-05A0-19F9-037A-C6889965617C</generatorID>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<referedAttribute>B3E8D2D7-648A-894D-D5ED-E60AE451F5BD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DA8CEF05-94AD-40F5-0A0D-6BCA460D9B56" name="detalle_orden PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 19:03:14 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>26C17315-050E-831E-74A5-D621A7F4C555</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

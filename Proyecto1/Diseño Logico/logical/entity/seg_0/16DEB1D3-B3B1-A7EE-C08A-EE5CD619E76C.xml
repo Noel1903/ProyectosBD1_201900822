@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="16DEB1D3-B3B1-A7EE-C08A-EE5CD619E76C" name="paises">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 18:57:44 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_pais" id="7FFB9873-F8F3-39F4-C6F1-6CA77AB1DB81">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 18:57:49 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="0E647D36-71A8-4C67-BA7C-D213F8DD352E">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 18:57:59 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A8C9F1F8-D869-4336-953A-AA20E723E595" name="paises PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-03-16 18:57:57 UTC</createdTime>
+<ownerDesignName>Diseño Logico</ownerDesignName>
+<engineerTo>
+<item key="D92C6C2D-1085-E1BD-1BBE-B205DFEAF169" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7FFB9873-F8F3-39F4-C6F1-6CA77AB1DB81</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

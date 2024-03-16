@@ -4,8 +4,9 @@ const fs = require('fs');
 const csvParser = require('csv-parser');
 const db = require('../config/database');
 const moment = require('moment');
+const {query1,query2,query3,query4,query5,query6,query7,query8,query9,query10,eliminar_tablas,tablas_modelo,eliminar_informacion} = require('../queries/queries');
 
-router.post('/data-upload',(req,res)=>{
+router.get('/cargarmodelo',async(req,res)=>{
     const csvPaises = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/paises.csv';
     const csvCategorias = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/Categorias.csv';
     const csvClientes = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/clientes.csv';
@@ -18,13 +19,6 @@ router.post('/data-upload',(req,res)=>{
     const valuesProductos = [];
     //const valuesOrdenes = [];
     const valuesVendedores = [];
-    
-    
-
-
-
-
-
 
     //Se cargan los paises
     fs.createReadStream(csvPaises)
@@ -212,5 +206,166 @@ router.post('/data-upload',(req,res)=>{
 
     
 });
+
+
+router.get('/consulta1', (req, res) => {
+    db.query(query1, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+});
+
+router.get('/consulta2', (req, res) => {
+    db.query(query2, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta3', (req, res) => {
+    db.query(query3, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta4', (req, res) => {
+    db.query(query4, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta5', (req, res) => {
+    db.query(query5, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta6', (req, res) => {
+    db.query(query6, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta7', (req, res) => {
+    db.query(query7, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta8', (req, res) => {
+    db.query(query8, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta9', (req, res) => {
+    db.query(query9, (err, result) => {
+        if(err){
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/consulta10', (req, res) => {
+    db.query(query10, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({ error: 'Error en la consulta' });
+            return;
+        }
+
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            res.json({ numCampos: 0, datos: [] }); // No hay datos, respondemos con un JSON vacío
+            return;
+        }
+
+        // Obtener el número de campos (claves del primer objeto)
+        const numregistros = result.length;
+
+        // Adjuntar el número de campos al JSON de respuesta
+        res.json({ numRegistros: numregistros, datos: result });
+    });
+}
+);
+
+router.get('/eliminarmodelo', (req, res) => {
+    db.query(eliminar_tablas, (err, result) => {
+        if(err){
+            console.log(err);
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/crearmodelo', (req, res) => {
+    db.query(tablas_modelo, (err, result) => {
+        if(err){
+            console.log(err);
+        }
+        res.json(result);
+    });
+}
+);
+
+router.get('/borrarinfodb', (req, res) => {
+    db.query(eliminar_informacion, (err, result,fields) => {
+        if(err){
+            console.log(err);
+        }
+        res.json(result);
+    });
+}
+);
 
 module.exports = router;

@@ -1,3 +1,5 @@
+/*****Queries para crear  las tablas de la base de datos*****/
+
 CREATE TABLE categorias (
     id_categoria INTEGER NOT NULL,
     nombre       CHAR(30)
@@ -33,7 +35,7 @@ ALTER TABLE detalle_orden ADD CONSTRAINT detalle_orden_pk PRIMARY KEY ( id_dorde
 
 CREATE TABLE ordenes (
     id_orden   INTEGER NOT NULL,
-    fecha      CHAR(10),
+    fecha      DATE,
     id_cliente INTEGER NOT NULL
 );
 
@@ -91,4 +93,253 @@ ALTER TABLE detalle_orden
     ADD CONSTRAINT table_8_vendedores_fk FOREIGN KEY ( id_vendedor )
         REFERENCES vendedores ( id_vendedor );
 
+
+/***Queries para mostrar las consultas en orden**/
+
+SELECT c.id_cliente,c.nombre,c.apellido,p.nombre,
+ROUND(SUM(prd.precio * dor.cantidad),2) AS Monto,
+COUNT(c.id_cliente) AS numveces
+FROM clientes c
+INNER JOIN paises p
+ON c.id_pais = p.id_pais
+INNER JOIN ordenes o 
+ON c.id_cliente = o.id_cliente
+INNER JOIN detalle_orden dor
+ON o.id_orden = dor.id_orden
+INNER JOIN productos prd
+ON dor.id_producto = prd.id_producto
+GROUP BY c.id_cliente
+ORDER BY numveces DESC
+LIMIT 1;
+
+SELECT id_producto, nombre_producto, categoria, cantidad_unidades, monto_vendido
+FROM (
+    SELECT prd.id_producto, prd.nombre AS nombre_producto, c.nombre AS categoria,
+           SUM(dto.cantidad) AS cantidad_unidades,
+           ROUND(SUM(prd.precio * dto.cantidad),2) AS monto_vendido
+    FROM productos prd
+    INNER JOIN categorias c ON prd.id_categoria = c.id_categoria
+    INNER JOIN detalle_orden dto ON prd.id_producto = dto.id_producto
+    GROUP BY prd.id_producto, prd.nombre, c.nombre
+    ORDER BY cantidad_unidades DESC
+    LIMIT 1
+) AS subquery1
+
+UNION
+
+SELECT id_producto, nombre_producto, categoria, cantidad_unidades, monto_vendido
+FROM (
+    SELECT prd.id_producto, prd.nombre AS nombre_producto, c.nombre AS categoria,
+           SUM(dto.cantidad) AS cantidad_unidades,
+           ROUND(SUM(prd.precio * dto.cantidad),2) AS monto_vendido
+    FROM productos prd
+    INNER JOIN categorias c ON prd.id_categoria = c.id_categoria
+    INNER JOIN detalle_orden dto ON prd.id_producto = dto.id_producto
+    GROUP BY prd.id_producto, prd.nombre, c.nombre
+    ORDER BY cantidad_unidades ASC
+    LIMIT 1
+) AS subquery2;
+
+
+SELECT v.id_vendedor,v.nombre,
+ROUND(SUM(prd.precio * dto.cantidad),2) AS monto_total
+FROM vendedores v
+INNER JOIN detalle_orden dto
+ON v.id_vendedor = dto.id_vendedor
+INNER JOIN productos prd
+ON dto.id_producto = prd.id_producto
+GROUP BY v.id_vendedor
+ORDER BY SUM(dto.cantidad) DESC
+LIMIT 1;
+
+
+SELECT nombre_pais, monto_total
+FROM (
+	SELECT p.nombre AS nombre_pais,
+    ROUND(SUM(prd.precio * dto.cantidad),2) AS monto_total
+    FROM paises p
+    INNER JOIN vendedores v
+    ON p.id_pais = v.id_pais
+    INNER JOIN detalle_orden dto
+    ON v.id_vendedor = dto.id_vendedor
+    INNER JOIN productos prd
+    ON dto.id_producto = prd.id_producto
+    GROUP BY p.nombre
+    ORDER BY SUM(dto.cantidad) DESC
+    LIMIT 1) as subquery1
+    
+    UNION
+    
+SELECT nombre_pais, monto_total
+FROM (
+	SELECT p.nombre AS nombre_pais,
+    ROUND(SUM(prd.precio * dto.cantidad),2) AS monto_total
+    FROM paises p
+    INNER JOIN vendedores v
+    ON p.id_pais = v.id_pais
+    INNER JOIN detalle_orden dto
+    ON v.id_vendedor = dto.id_vendedor
+    INNER JOIN productos prd
+    ON dto.id_producto = prd.id_producto
+    GROUP BY p.nombre
+    ORDER BY SUM(dto.cantidad) ASC
+    LIMIT 1) as subquery2;
+
+SELECT p.id_pais, p.nombre,
+ROUND(SUM(prd.precio * dto.cantidad),2) AS monto
+FROM paises p
+JOIN clientes c
+ON p.id_pais = c.id_pais
+JOIN ordenes ord
+ON c.id_cliente = ord.id_cliente
+JOIN detalle_orden dto
+ON ord.id_orden = dto.id_orden
+JOIN productos prd
+ON dto.id_producto = prd.id_producto
+GROUP BY p.id_pais, p.nombre
+ORDER BY monto ASC
+LIMIT 5;
+
+
+SELECT nombre_categoria,cantidad_unidades
+FROM (
+	SELECT cat.nombre AS nombre_categoria, 
+    SUM(dto.cantidad) AS cantidad_unidades
+    FROM categorias cat
+    INNER JOIN productos prd
+    ON cat.id_categoria = prd.id_categoria
+    INNER JOIN detalle_orden dto
+    ON prd.id_producto = dto.id_producto
+    GROUP BY cat.nombre
+    ORDER BY cantidad_unidades DESC
+    LIMIT 1
+) AS subquery1
+UNION
+SELECT nombre_categoria,cantidad_unidades
+FROM (
+	SELECT cat.nombre AS nombre_categoria, 
+    SUM(dto.cantidad) AS cantidad_unidades
+    FROM categorias cat
+    INNER JOIN productos prd
+    ON cat.id_categoria = prd.id_categoria
+    INNER JOIN detalle_orden dto
+    ON prd.id_producto = dto.id_producto
+    GROUP BY cat.nombre
+    ORDER BY cantidad_unidades ASC
+    LIMIT 1
+) AS subquery2;
+
+
+SELECT p.nombre AS nombre_pais,cat.nombre AS nombre_categoria,
+SUM(dto.cantidad) AS cantidad_unidades
+FROM paises p
+INNER JOIN clientes c
+ON p.id_pais = c.id_pais
+INNER JOIN ordenes ord
+ON c.id_cliente = ord.id_cliente
+INNER JOIN detalle_orden dto
+ON ord.id_orden = dto.id_orden
+INNER JOIN productos prd
+ON dto.id_producto = prd.id_producto
+INNER JOIN categorias cat
+ON prd.id_categoria = cat.id_categoria
+GROUP BY p.id_pais,cat.nombre
+HAVING
+	SUM(dto.cantidad) = (
+		SELECT MAX(cantidad_u)
+        FROM (
+			SELECT p.id_pais,cat.nombre,
+			SUM(dto.cantidad) AS cantidad_u
+			FROM paises p
+			INNER JOIN clientes c
+			ON p.id_pais = c.id_pais
+			INNER JOIN ordenes ord
+			ON c.id_cliente = ord.id_cliente
+			INNER JOIN detalle_orden dto
+			ON ord.id_orden = dto.id_orden
+			INNER JOIN productos prd
+			ON dto.id_producto = prd.id_producto
+			INNER JOIN categorias cat
+			ON prd.id_categoria = cat.id_categoria
+			GROUP BY p.id_pais,cat.nombre
+        ) AS subquery
+        WHERE subquery.id_pais = p.id_pais
+    )
+ORDER BY cantidad_unidades DESC;
+
+
+SELECT MONTH(ord.fecha) AS numero_mes,
+ROUND(SUM(prd.precio * dto.cantidad),2) AS monto_total
+FROM ordenes ord
+INNER JOIN detalle_orden dto
+ON ord.id_orden = dto.id_orden
+INNER JOIN productos prd
+ON dto.id_producto = prd.id_producto
+INNER JOIN  vendedores v
+ON dto.id_vendedor = v.id_vendedor
+INNER JOIN paises p 
+ON v.id_pais = p.id_pais
+WHERE p.nombre = 'Inglaterra'
+GROUP BY numero_mes
+ORDER BY numero_mes;
+
+
+SELECT mes,monto
+FROM (
+	SELECT MONTH(ord.fecha) AS mes,
+    ROUND(SUM(prd.precio * dto.cantidad),2) AS monto
+	FROM ordenes ord 
+    INNER JOIN detalle_orden dto
+    ON ord.id_orden = dto.id_orden
+    INNER JOIN productos prd
+    ON dto.id_producto = prd.id_producto
+    GROUP BY mes
+    ORDER BY mes DESC
+    LIMIT 1
+    )AS subquery1
+    UNION
+SELECT mes,monto
+FROM (
+	SELECT MONTH(ord.fecha) AS mes,
+    ROUND(SUM(prd.precio * dto.cantidad),2) AS monto
+	FROM ordenes ord 
+    INNER JOIN detalle_orden dto
+    ON ord.id_orden = dto.id_orden
+    INNER JOIN productos prd
+    ON dto.id_producto = prd.id_producto
+    GROUP BY mes
+    ORDER BY mes ASC
+    LIMIT 1
+    )AS subquery2;
+
+
+    SELECT prd.id_producto,prd.nombre,
+ROUND(SUM(prd.precio * dto.cantidad),2) AS monto
+FROM productos prd
+INNER JOIN detalle_orden dto
+ON prd.id_producto = dto.id_producto
+INNER JOIN categorias cat
+ON prd.id_categoria = cat.id_categoria
+WHERE cat.nombre = 'Deportes'
+GROUP BY prd.id_producto,prd.nombre;
+
+
+
+/*****Queries para eliminar tablas, modelos*****/
 SET SQL_SAFE_UPDATES = 0;
+DROP TABLE detalle_orden;
+DROP TABLE ordenes;
+DROP TABLE vendedores;
+DROP TABLE productos;
+DROP TABLE clientes;
+DROP TABLE categorias;
+DROP TABLE paises;
+
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM detalle_orden;
+DELETE FROM ordenes;
+DELETE FROM vendedores;
+DELETE FROM productos;
+DELETE FROM clientes;
+DELETE FROM categorias;
+DELETE FROM paises;
