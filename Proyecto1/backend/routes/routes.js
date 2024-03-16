@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const csvParser = require('csv-parser');
 const db = require('../config/database');
+const moment = require('moment');
 
 router.post('/data-upload',(req,res)=>{
     const csvPaises = 'D:/USAC2024/SEMESTRE1/SBD1/Laboratorio/ProyectosBD1_201900822/Proyecto1/backend/data/paises.csv';
@@ -144,7 +145,16 @@ router.post('/data-upload',(req,res)=>{
         }
     }))
     .on('data', (row) => {
-        const clave = `${row.id_orden}-${row.fecha_orden}-${row.id_cliente}`;
+        // Dividir el string de fecha en día, mes y año
+        const partesFecha = row.fecha_orden.split('/');
+
+        // Crear un objeto Date con los componentes de la fecha
+        const fecha = new Date(partesFecha[2], partesFecha[1] - 1, partesFecha[0]);
+
+        // Formatear la fecha en el formato "YYYY-MM-DD"
+        const fechaFormateada = fecha.getFullYear() + '-' + (fecha.getMonth() + 1).toString().padStart(2, '0') + '-' + fecha.getDate().toString().padStart(2, '0');
+
+        const clave = `${row.id_orden}_${fechaFormateada}_${row.id_cliente}`;
         valoresOrdenes.add(clave);
         
     })
@@ -156,7 +166,7 @@ router.post('/data-upload',(req,res)=>{
 
         // Ejemplo de cómo iterar sobre las claves únicas e insertar en la base de datos
         for (const clave of clavesUnicas) {
-            const [id_orden, fecha_orden, id_cliente] = clave.split('-');
+            const [id_orden, fecha_orden, id_cliente] = clave.split('_');
             // Ejemplo de inserción en la base de datos (reemplaza esto con tu lógica real)
             db.query(`INSERT INTO ordenes (id_orden, fecha, id_cliente) VALUES (?, ?, ?)`, [id_orden, fecha_orden, id_cliente], (err, result) => {
                 if (err) {
