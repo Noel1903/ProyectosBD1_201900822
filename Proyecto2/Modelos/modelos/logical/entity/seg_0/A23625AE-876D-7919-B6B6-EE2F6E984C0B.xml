@@ -1,0 +1,165 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A23625AE-876D-7919-B6B6-EE2F6E984C0B" name="transaccion">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:23:58 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_transaccion" id="0284D52D-5800-9803-1890-FF15B7C5B246">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:24:12 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha" id="8E187F0E-B6DC-F1C5-2E8B-DBADAE4CBB28">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:24:23 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="otros_detalles" id="E1E1418E-6004-37F6-0A87-85F0BED4C014">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:24:37 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_tipo_transaccion" id="ABEDFB13-276E-84CC-B003-303613B2272B">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:26:08 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_c_d_d" id="77DE5893-1713-028D-4F00-80DBBDC7B78A">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:26:30 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="no_cuenta" id="4FAA8A3C-1EA5-81A0-6C0C-4CB8BEAAF42A">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:27:06 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="codigo_transaccion" id="71E835F4-F9A8-6782-671D-EE6B26E0BC3A">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:31:41 UTC</createdTime>
+<generatorID>D56DE051-893C-A829-93AD-BBCA926E68CF</generatorID>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<referedAttribute>2685DDD5-5943-6107-D1DB-F28D5A6AD7A4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_compra" id="DD20813B-1F69-9478-C71A-C0A42966ED1B">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:39:50 UTC</createdTime>
+<generatorID>3FC95EBA-BCA7-4CFD-C184-2A4BC10737DD</generatorID>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>223B5C17-3F6B-3290-3231-00DC963280F8</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_debito" id="447CA9E5-4DE1-A847-6B34-C3DB5C07BA55">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:50:59 UTC</createdTime>
+<generatorID>D6AB01E5-57A6-7A69-4ECF-26EECCFDA621</generatorID>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<referedAttribute>B45FCA24-B34D-79D6-5C6A-9F821F9943FA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_deposito" id="F28F0FED-BF5B-6B78-EFD2-7C682720ADEC">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:51:14 UTC</createdTime>
+<generatorID>F40D93F7-474F-B14C-53FB-C0B4F511D415</generatorID>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>72907BC8-A4D9-E0EB-8303-E10E289F3AFF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="57AB175C-65E1-7434-692A-DB6175BA8073" name="transaccion PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:24:22 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0284D52D-5800-9803-1890-FF15B7C5B246</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

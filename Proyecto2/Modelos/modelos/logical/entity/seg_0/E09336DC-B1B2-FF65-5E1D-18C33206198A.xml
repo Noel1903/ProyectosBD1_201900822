@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E09336DC-B1B2-FF65-5E1D-18C33206198A" name="tipo_cliente">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:07:03 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_tipo" id="8697552F-3A23-2A5C-AB97-1660D87EA1E0">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:07:14 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="529EA86A-DE0D-776F-D1DF-DC1B8AB44A48">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:07:35 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descripcion" id="A07A64FD-3A18-A46E-AFD3-D6302527A27A">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:07:51 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="340E45BC-3C36-F882-5D16-C15E16800295" name="tipo_cliente PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 17:07:26 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<engineerTo>
+<item key="372F7F79-868E-FEE9-021A-96FDF71A9D24" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8697552F-3A23-2A5C-AB97-1660D87EA1E0</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
