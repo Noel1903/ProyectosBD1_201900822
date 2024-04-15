@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="61A3B5BD-5202-A99B-6679-34D0531123C4" name="tipo_cuenta">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:32:22 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<ordsAlias>table_8</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="codigo" id="6E8D4A87-409F-0BC6-18D1-AF90F6D249D4">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:33:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="3E777008-9663-A70D-96AB-6A34CC2E0A84">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:33:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="579BCF58-0B58-49EC-0825-516E4EA2CB50">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:33:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6898597F-3B6A-047E-B687-15F51B1A5265" name="tipo_cuenta_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:33:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6E8D4A87-409F-0BC6-18D1-AF90F6D249D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

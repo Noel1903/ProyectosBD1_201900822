@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D796020-B40A-E2F2-59D4-3AF735BA9DBA" name="cuenta">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:27:58 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_cuenta" id="78B4F119-CC56-E067-D740-00F45FE4110D">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="monto_apertura" id="63658A1C-A481-4CCD-DBD5-9D1C48BFBF94">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="saldo_cuenta" id="4E771331-7E9E-BF30-5358-AEBBD3FB2AD1">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="C5B06178-9B51-94C2-CBF3-D8FFDC0813ED">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_apertura" id="C1225BF1-E435-B18C-D828-5EB49D95F0F9">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="otros_detalles" id="3DB89D01-DB59-2897-B3FF-D706CE035755">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipo_cuenta" id="9907AEB2-A5C5-4163-3747-020867D0F581">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="088F9F82-F3FB-8343-DF8A-407A51C4820B" referredColumn="6E8D4A87-409F-0BC6-18D1-AF90F6D249D4"/>
+</associations>
+</Column>
+<Column name="id_cliente" id="4676644F-C4D1-E1CB-D7C6-3F7FE7A442F4">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="35FBE0D0-BC44-1E03-717B-34651513D932" referredColumn="94A36AB8-FB47-80F4-490B-95FDC6C9673E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FF7C8F54-24A3-5082-7042-783C8E02405D" name="cuenta_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:31:46 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="78B4F119-CC56-E067-D740-00F45FE4110D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE9662D5-CB38-9FA8-A228-B86DDB88001E" name="cuenta_tipo_cuenta_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:43:02 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9907AEB2-A5C5-4163-3747-020867D0F581"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE5C1CA8-2164-9CDB-BFA0-3238E73FE75F" name="cuenta_cliente_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:43:24 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4676644F-C4D1-E1CB-D7C6-3F7FE7A442F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

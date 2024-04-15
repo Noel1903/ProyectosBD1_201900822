@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B1D98D9C-7A7C-CE4B-C9FB-85A04899D865" containerWithKeyObject="CE849079-B40D-A36F-1F38-44F08804C4CC" localFKIndex="CB683DEA-C42B-822D-C5BC-C78DF5795A2B" name="transaccion_deposito_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:57:32 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<referredTableLongName>deposito</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>5D7ABC3A-EF5C-A025-C35C-E832E9738FD3</referredTableID>
+<keyObject>49E66368-8219-7655-9BAE-A4B0D485FE23</keyObject>
+<referredKeyID>49E66368-8219-7655-9BAE-A4B0D485FE23</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_deposito</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

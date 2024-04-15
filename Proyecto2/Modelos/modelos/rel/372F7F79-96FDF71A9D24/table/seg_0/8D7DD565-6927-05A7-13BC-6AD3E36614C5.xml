@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8D7DD565-6927-05A7-13BC-6AD3E36614C5" name="producto_servicio">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:46:02 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<ordsAlias>table_9</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="codigo_prod_serv" id="D3CE9947-A13E-085A-C580-7CDBB7BB7E00">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:49:34 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipo" id="754C02BC-1063-8CE9-C689-433DAEF5A2C2">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:49:34 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="costo" id="E4E4323F-829D-2FDC-D32A-EADD35CDD92B">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:49:34 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion_prod_serv" id="19A1CB06-47A6-7640-B518-E4CE757402B4">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:49:34 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E4B28905-1FE2-CF5E-F653-322F36BB1842" name="producto_servicio_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:49:34 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D3CE9947-A13E-085A-C580-7CDBB7BB7E00"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

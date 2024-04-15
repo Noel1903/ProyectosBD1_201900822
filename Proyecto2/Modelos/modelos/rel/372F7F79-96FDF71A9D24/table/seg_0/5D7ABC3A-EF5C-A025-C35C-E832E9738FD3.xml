@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5D7ABC3A-EF5C-A025-C35C-E832E9738FD3" name="deposito">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:05:38 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<ordsAlias>table_14</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_deposito" id="206A1217-DF69-5245-34D9-752C5A4470D2">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:07:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="2FD52173-31EC-17C7-E9DC-F0CB4A54E2F5">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:07:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="monto" id="EBB1B597-FA7C-71B7-425E-E8445988CADD">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:07:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="otros_detalles" id="F6568641-920E-BD2F-1509-59295AEB9A80">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:07:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_cliente" id="2093B7A5-0C72-5C47-6800-CC183D41D173">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:07:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E01E8C9E-526B-DEF3-3B7B-9AA894800FB0" referredColumn="94A36AB8-FB47-80F4-490B-95FDC6C9673E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="49E66368-8219-7655-9BAE-A4B0D485FE23" name="deposito_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:07:59 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="206A1217-DF69-5245-34D9-752C5A4470D2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FDBCC35A-79A1-C1F6-F9E1-63885BA87C63" name="deposito_cliente_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:17:00 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2093B7A5-0C72-5C47-6800-CC183D41D173"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

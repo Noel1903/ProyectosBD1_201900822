@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ED5949D2-E356-6964-38A4-CDCBFCBCB95E" name="tipo_transaccion">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:29:45 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<ordsAlias>table_19</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="codigo_transaccion" id="C0A93D5F-33E8-85AC-A697-4CF4AB921A35">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:32:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="4EB4332A-2A5F-E713-3240-1F6CC73F1D10">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:32:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="6B0D1F15-AA70-D8F5-A529-EDCDBB15D83C">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:32:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A8AAEBD2-D92D-AF0C-DD3E-8DD792E9FDB3" name="tipo_transaccion_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:32:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C0A93D5F-33E8-85AC-A697-4CF4AB921A35"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

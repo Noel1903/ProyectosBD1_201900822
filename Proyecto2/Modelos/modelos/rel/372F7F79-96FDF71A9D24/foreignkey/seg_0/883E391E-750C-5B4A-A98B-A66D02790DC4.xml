@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="883E391E-750C-5B4A-A98B-A66D02790DC4" containerWithKeyObject="CE849079-B40D-A36F-1F38-44F08804C4CC" localFKIndex="81300012-7BB3-EC44-C44D-460750855BF2" name="transaccion_tipo_transaccion_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:58:17 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<referredTableLongName>tipo_transaccion</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>ED5949D2-E356-6964-38A4-CDCBFCBCB95E</referredTableID>
+<keyObject>A8AAEBD2-D92D-AF0C-DD3E-8DD792E9FDB3</keyObject>
+<referredKeyID>A8AAEBD2-D92D-AF0C-DD3E-8DD792E9FDB3</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>codigo_transaccion</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

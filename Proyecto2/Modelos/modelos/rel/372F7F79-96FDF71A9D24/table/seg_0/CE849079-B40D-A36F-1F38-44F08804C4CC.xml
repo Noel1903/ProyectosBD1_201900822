@@ -1,0 +1,160 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CE849079-B40D-A36F-1F38-44F08804C4CC" name="transaccion">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:17:53 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<ordsAlias>table_17</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_transaccion" id="D2CADAE8-AE02-CD8D-6704-738D3101D1F5">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:20:56 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="C582E00F-46E4-DFC2-676F-5D23D4F5ADF8">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:20:56 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="otros_detalles" id="141B95A1-CA06-6980-4B21-F749CFC36AB7">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:20:56 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_tipo_transaccion" id="EBE31EB3-C9AF-95B5-8E46-1C0DE713F259">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:20:56 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="883E391E-750C-5B4A-A98B-A66D02790DC4" referredColumn="C0A93D5F-33E8-85AC-A697-4CF4AB921A35"/>
+</associations>
+</Column>
+<Column name="id_compra" id="8A75DFED-76AA-1C06-C4B1-5236C23BCC2C">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:55:33 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="735DB01D-E37B-B626-C288-74830762A88A" referredColumn="3C81B10C-8884-704F-7B4E-0785209DB378"/>
+</associations>
+</Column>
+<Column name="id_deposito" id="AF277DF5-249B-7C4F-D684-A5CD1656A27B">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:55:33 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B1D98D9C-7A7C-CE4B-C9FB-85A04899D865" referredColumn="206A1217-DF69-5245-34D9-752C5A4470D2"/>
+</associations>
+</Column>
+<Column name="id_debito" id="DF681B07-50FA-6432-6EDA-60E9ECAD9F65">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:56:24 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C3D73B07-0C4F-AAF3-DE25-B50E57BBD1B6" referredColumn="C70D0B15-10EB-77C1-8341-F70467BC83B6"/>
+</associations>
+</Column>
+<Column name="no_cuenta" id="0FF843F1-B032-1A84-65A3-9F1532A802C3">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:20:56 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CDDC066E-2C5B-C6A2-2485-6FA1C1AB9DFC" name="transaccion_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 23:20:56 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D2CADAE8-AE02-CD8D-6704-738D3101D1F5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7ED4A6E1-D70D-58AA-1A21-9EFBCDE2A366" name="transaccion_compra_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:57:13 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8A75DFED-76AA-1C06-C4B1-5236C23BCC2C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CB683DEA-C42B-822D-C5BC-C78DF5795A2B" name="transaccion_deposito_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:57:32 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AF277DF5-249B-7C4F-D684-A5CD1656A27B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FCACEF18-97C5-52FB-FE68-D670BACCC9F5" name="transaccion_debito_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:57:53 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DF681B07-50FA-6432-6EDA-60E9ECAD9F65"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="81300012-7BB3-EC44-C44D-460750855BF2" name="transaccion_tipo_transaccion_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-12 18:58:17 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EBE31EB3-C9AF-95B5-8E46-1C0DE713F259"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

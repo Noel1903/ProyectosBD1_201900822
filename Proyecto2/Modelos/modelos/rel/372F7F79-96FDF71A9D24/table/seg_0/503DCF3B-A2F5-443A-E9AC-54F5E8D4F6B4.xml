@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="503DCF3B-A2F5-443A-E9AC-54F5E8D4F6B4" name="compra">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:49:56 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<ordsAlias>table_10</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_compra" id="3C81B10C-8884-704F-7B4E-0785209DB378">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:52:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="E24B2656-EF17-D738-EB0D-9D78B745B3FB">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:52:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="importe_compra" id="0C7B0B38-5065-4A2A-23DD-0935CA137F82">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:52:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="otros_detalles" id="E3FF7524-8C28-F863-900A-E55C9296C691">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:52:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="codigo_prod_serv" id="20547664-805E-66D8-2072-04B501724AEA">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:52:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2DAFC483-632B-3C2D-5A9A-863D5736D947" referredColumn="D3CE9947-A13E-085A-C580-7CDBB7BB7E00"/>
+</associations>
+</Column>
+<Column name="id_cliente" id="5A6385D5-B328-D36E-C58D-E732A472A6F9">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:52:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="53E9B500-35C3-0346-54AA-81A4B2A7E8BB" referredColumn="94A36AB8-FB47-80F4-490B-95FDC6C9673E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="08776338-3140-CFB3-7BDE-EB090D8FBE35" name="compra_PK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 18:52:11 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C81B10C-8884-704F-7B4E-0785209DB378"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="84D770A3-ADEC-4BB4-0AFB-0D93F5A75D49" name="compra_producto_servicio_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 19:58:48 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="20547664-805E-66D8-2072-04B501724AEA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1745000D-5E71-1598-E886-F1ABCCC51A61" name="compra_cliente_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-11 19:59:44 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A6385D5-B328-D36E-C58D-E732A472A6F9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
