@@ -147,3 +147,157 @@ proc_cliente:BEGIN
     END IF;
 END //
 DELIMITER ;
+
+
+#Trigger para llenar historial tipo_cuenta
+DELIMITER //
+CREATE TRIGGER historial_tipo_cuenta AFTER INSERT ON tipo_cuenta
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla tipo_cuenta','INSERT');
+END //
+DELIMITER ;
+
+#Funcion para llenar tipo_cuenta
+DELIMITER //
+CREATE PROCEDURE registrarTipoCuenta(
+IN id INTEGER,
+IN nombre VARCHAR(50),
+IN descripcion VARCHAR(100)
+)
+BEGIN
+	INSERT INTO tipo_cuenta (nombre,descripcion)
+    VALUES (nombre,descripcion);
+    SELECT('Se han ingresado datos a la tabla tipo_cuenta');
+END //
+DELIMITER ;
+call registrarTipoCuenta(1,'Cuenta de Cheques','Este tipo de cuenta ofrece la facilidad de emitir cheques para realizar transacciones monetarias.');
+
+
+#Funcion para verificar si existe tipo cuenta
+DELIMITER //
+CREATE FUNCTION existe_tipo_cuenta(tipo INTEGER) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+    DECLARE existe BOOLEAN;
+    SELECT EXISTS (SELECT 1 FROM tipo_cuenta WHERE codigo = tipo) INTO existe;
+    RETURN existe;
+END //
+DELIMITER ;
+
+
+#Funcion para verificar si existe numero cuenta
+DELIMITER //
+CREATE PROCEDURE registrarCuenta(
+IN id_cuenta BIGINT,
+IN monto_apertura DECIMAL(12,2),
+IN saldo_cuenta DECIMAL(12,2),
+IN descripcion VARCHAR(50),
+IN fecha_apertura VARCHAR(100),
+IN otros_detalles VARCHAR(100),
+IN tipo_cuenta INTEGER,
+IN id_cliente INTEGER
+)
+proc_cuenta:BEGIN
+	IF existe_cuenta(id_cuenta) THEN
+		SELECT 'Error: La cuenta ya existe' as Error;
+        LEAVE proc_cuenta;
+	ELSEIF monto_apertura <0 THEN
+		SELECT 'Error: El monto de apertura debe ser positivo' as Error;
+        LEAVE proc_cuenta;
+	ELSEIF saldo_cuenta < 0 THEN
+		SELECT 'Error: El saldo de la cuenta debe ser de 0 en adelante' as Error;
+        LEAVE proc_cuenta;
+	ELSEIF NOT existe_tipo_cuenta(tipo_cuenta) THEN
+		SELECT 'Error: El tipo de cuenta no existe' as Error;
+        LEAVE proc_cuenta;
+	ELSEIF NOT existe_id_cliente(id_cliente) THEN
+		SELECT 'Error: El cliente no existe' as Error;
+        LEAVE proc_cuenta;
+	ELSE
+		IF length(fecha_apertura) > 0 THEN
+			INSERT INTO cuenta (id_cuenta,monto_apertura,saldo_cuenta,descripcion,fecha_apertura,otros_detalles,tipo_cuenta,id_cliente)
+            VALUES (id_cuenta,monto_apertura,saldo_cuenta,descripcion,STR_TO_DATE(fecha_apertura, '%d/%m/%Y'),otros_detalles,tipo_cuenta,id_cliente);
+            SELECT 'Se han ingresado datos en  la tabla cuenta.';
+		ELSE
+			INSERT INTO cuenta (id_cuenta,monto_apertura,saldo_cuenta,descripcion,fecha_apertura,otros_detalles,tipo_cuenta,id_cliente)
+            VALUES (id_cuenta,monto_apertura,saldo_cuenta,descripcion,DATE_FORMAT(CURDATE(), '%d/%m/%Y'),otros_detalles,tipo_cuenta,id_cliente);
+			SELECT 'Se han ingresado datos en  la tabla cuenta.';
+		END IF;
+	END IF;
+END //
+DELIMITER ;
+call registrarCuenta(3030206081, 800.00, 1000.00, 'Apertura de cuenta con Q800','','',3,1002);
+call registrarCuenta(3030206081, 600.00, 600.00, 'Apertura de cuenta con Q500','01/04/2024','esta apertura tiene fecha',5,1001);
+
+
+
+#Funcion para verificar si existe el id_cliente
+DELIMITER //
+CREATE FUNCTION existe_id_cliente(id INTEGER) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+    DECLARE existe BOOLEAN;
+    SELECT EXISTS (SELECT 1 FROM cliente WHERE id_cliente = id) INTO existe;
+    RETURN existe;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER historial_cuenta AFTER INSERT ON cuenta
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla cuenta','INSERT');
+END //
+DELIMITER ;
+
+
+
+#Trigger para el historial del producto_servicio
+DELIMITER //
+CREATE TRIGGER historial_cuenta AFTER INSERT ON cuenta
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla cuenta','INSERT');
+END //
+DELIMITER ;
+
+
+
+#Funcion para el llenado de producto_servicio
+DELIMITER //
+CREATE PROCEDURE crearProductoServicio(
+IN codigo_prod_serv INTEGER,
+IN tipo INTEGER,
+IN costo DECIMAL(12,2),
+IN descripcion_prod_serv varchar(100)
+)
+proc_prod_serv:BEGIN
+	CASE tipo 
+		WHEN  1 THEN
+			IF costo>0 THEN
+				INSERT INTO producto_servicio (codigo_prod_serv,tipo,costo,descripcion_prod_serv)
+                VALUES (codigo_prod_serv,tipo,costo,descripcion_prod_serv);
+                SELECT 'Datos ingresados en la tabla producto_servicio';
+                LEAVE proc_prod_serv;
+			ELSE 
+				SELECT 'Error: El tipo 1 tiene que tener un valor definido' AS Error;
+                LEAVE proc_prod_serv;
+			END IF;
+		WHEN 2 THEN
+			INSERT INTO producto_servicio (codigo_prod_serv,tipo,costo,descripcion_prod_serv)
+                VALUES (codigo_prod_serv,tipo,costo,descripcion_prod_serv);
+                SELECT 'Datos ingresados en la tabla producto_servicio';
+                LEAVE proc_prod_serv;
+		ELSE 
+			SELECT 'Tipo no definido, es erroneo' as Error;
+			LEAVE proc_prod_serv;
+	END CASE;			
+END //
+DELIMITER ;
