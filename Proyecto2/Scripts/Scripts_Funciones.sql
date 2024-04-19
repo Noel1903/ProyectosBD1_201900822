@@ -301,3 +301,215 @@ proc_prod_serv:BEGIN
 	END CASE;			
 END //
 DELIMITER ;
+
+
+#Existe Producto o Servicio
+DELIMITER //
+CREATE FUNCTION existe_producto_servicio(id INTEGER) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+    DECLARE existe BOOLEAN;
+    SELECT EXISTS (SELECT 1 FROM producto_servicio WHERE codigo_prod_serv = id) INTO existe;
+    RETURN existe;
+END //
+DELIMITER ;
+
+#Trigger de historial de compra
+DELIMITER //
+CREATE TRIGGER historial_compra AFTER INSERT ON compra
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla compra','INSERT');
+END //
+DELIMITER ;
+
+#funcion para devolver el tipo de producto
+DELIMITER //
+CREATE FUNCTION retornar_tipo_prod_serv(id INTEGER) RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE tipo_ INTEGER;
+    SELECT tipo INTO tipo_ FROM producto_servicio WHERE codigo_prod_serv = id;
+    RETURN tipo_;
+END //
+DELIMITER ;
+
+
+#Procedimiento almacenado para llenar la tabla compra
+DELIMITER //
+CREATE PROCEDURE realizarCompra(
+IN id_compra INTEGER,
+IN fecha VARCHAR(100),
+IN importe_compra DECIMAL(12,2),
+IN otros_detalles varchar(100),
+IN codigo_prod_serv INTEGER,
+IN id_cliente INTEGER
+)
+proc_compra:BEGIN
+	DECLARE tipo_prod_serv INTEGER;
+    IF NOT existe_id_cliente(id_cliente) THEN
+		SELECT 'Error: El id_cliente no existe' as Error;
+        LEAVE proc_compra;
+	ELSE
+		IF NOT existe_producto_servicio(codigo_prod_serv) THEN
+			SELECT 'Error: El codigo de producto o servicio no existe' as Error;
+			LEAVE proc_compra;
+		ELSE
+			SET tipo_prod_serv = retornar_tipo_prod_serv(codigo_prod_serv);
+			CASE tipo_prod_serv
+				WHEN 1 THEN
+					IF importe_compra > 0 THEN
+						SELECT 'Error: Como es un servicio, el valor de importe_compra debe ser 0 por ya tener un precio establecido' as Error;
+						LEAVE proc_compra;
+					ELSE
+						INSERT INTO compra (id_compra,fecha,importe_compra,otros_detalles,codigo_prod_serv,id_cliente)
+						VALUES (id_compra,STR_TO_DATE(fecha, '%d/%m/%Y'),importe_compra,otros_detalles,codigo_prod_serv,id_cliente);
+						SELECT 'Datos ingresados a la tabla compra';
+						LEAVE proc_compra;
+					END IF;
+				WHEN 2 THEN
+					IF importe_compra = 0 THEN
+						SELECT 'Error: Como es un producto, el valor de importe_compra debe ser mayor a 0 por no tener un precio establecido' as Error;
+						LEAVE proc_compra;
+					ELSE
+						INSERT INTO compra (id_compra,fecha,importe_compra,otros_detalles,codigo_prod_serv,id_cliente)
+						VALUES (id_compra,STR_TO_DATE(fecha, '%d/%m/%Y'),importe_compra,otros_detalles,codigo_prod_serv,id_cliente);
+						SELECT 'Datos ingresados a la tabla compra';
+						LEAVE proc_compra;
+					END IF;
+				
+			END CASE;
+		END IF;
+	END IF;
+END //
+DELIMITER ;
+call realizarCompra(1111, '10/04/2024', 40, 'compra de servicio', 18, 1001); 
+call realizarCompra(1112, '10/04/2024', 0, 'compra de producto', 19, 1001); 
+call realizarCompra(1113, '10/04/2024', 50, 'compra de producto', 19, 1001);
+
+#Trigger del historial de realizarDeposito
+
+DELIMITER //
+CREATE TRIGGER historial_deposito AFTER INSERT ON deposito
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla deposito','INSERT');
+END //
+DELIMITER ;
+
+#Funcion almacenada para el realizarDeposito
+
+
+DELIMITER //
+
+CREATE PROCEDURE realizarDeposito(
+IN id_deposito INTEGER,
+IN fecha VARCHAR(100),
+IN monto DECIMAL(12,2),
+IN otros_detalles VARCHAR(40),
+IN id_cliente INTEGER
+)
+proc_deposito:BEGIN
+	IF existe_id_cliente(id_cliente) THEN
+		IF monto > 0 THEN
+			INSERT INTO deposito(id_deposito,fecha,monto,otros_detalles,id_cliente)
+            VALUES (id_deposito,STR_TO_DATE(fecha, '%d/%m/%Y'),monto,otros_detalles,id_cliente);
+            SELECT 'Datos ingresados a la tabla deposito';
+			LEAVE proc_deposito;
+		ELSE
+			SELECT 'Error: El monto a depositar debe ser mayor a 0' as Error;
+			LEAVE proc_deposito;
+		END IF;
+	ELSE
+		SELECT 'Error: El id_cliente no existe' as Error;
+		LEAVE proc_deposito;
+	END IF;
+END //
+DELIMITER ;
+
+
+realizarDeposito(1114, '10/04/2024', 100, 'deposito de dinero', 1001);
+realizarDeposito(1115, '10/04/2024', 0, 'deposito de dinero', 1001);
+
+#Trigger del historial de realizarDebito
+
+DELIMITER //
+CREATE TRIGGER historial_debito AFTER INSERT ON debito
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla debito','INSERT');
+END //
+DELIMITER ;
+
+#Funcion almacenada para el realizarDebito
+
+
+DELIMITER //
+
+CREATE PROCEDURE realizarDebito(
+IN id_debito INTEGER,
+IN fecha VARCHAR(100),
+IN monto DECIMAL(12,2),
+IN otros_detalles VARCHAR(40),
+IN id_cliente INTEGER
+)
+proc_debito:BEGIN
+	IF existe_id_cliente(id_cliente) THEN
+		IF monto > 0 THEN
+			INSERT INTO debito(id_debito,fecha,monto,otros_detalles,id_cliente)
+            VALUES (id_debito,STR_TO_DATE(fecha, '%d/%m/%Y'),monto,otros_detalles,id_cliente);
+            SELECT 'Datos ingresados a la tabla debito';
+			LEAVE proc_debito;
+		ELSE
+			SELECT 'Error: El monto a debitar debe ser mayor a 0' as Error;
+			LEAVE proc_debito;
+		END IF;
+	ELSE
+		SELECT 'Error: El id_cliente no existe' as Error;
+		LEAVE proc_debito;
+	END IF;
+END //
+DELIMITER ;
+
+call realizarDebito(1116, '10/04/2024', 100, 'retiro de dinero', 1001);
+call realizarDebito(1117, '10/04/2024', 0, 'retiro de dinero con error', 1001);
+
+
+#Trigger del historial de tipo_transaccion
+
+DELIMITER //
+CREATE TRIGGER historial_tipo_transaccion AFTER INSERT ON tipo_transaccion
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla tipo_transaccion','INSERT');
+END //
+DELIMITER ;
+
+#Funcion almacenada para el tipo_transaccion
+
+
+DELIMITER //
+
+CREATE PROCEDURE registrarTipoTransaccion(
+IN codigo_transaccion INTEGER,
+IN nombre VARCHAR(20),
+IN descripcion VARCHAR(40)
+)
+BEGIN
+	INSERT INTO tipo_transaccion (codigo_transaccion,nombre,descripcion)
+    VALUES (codigo_transaccion,nombre,descripcion);
+    SELECT 'Datos ingresados a la tabla tipo_transaccion';
+END //
+DELIMITER ;
+
+call registrarTipoTransaccion(1, 'Compra', 'Transacción de compra');
+call registrarTipoTransaccion(2, 'Deposito', 'Transacción de deposito');
+call registrarTipoTransaccion(3, 'Debito', 'Transacción de debito');
