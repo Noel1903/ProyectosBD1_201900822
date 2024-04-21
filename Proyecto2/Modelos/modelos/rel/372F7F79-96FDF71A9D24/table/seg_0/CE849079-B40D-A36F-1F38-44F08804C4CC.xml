@@ -102,6 +102,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DEC7CB49-95E9-C9F4-2851-9C840CE4058F" referredColumn="78B4F119-CC56-E067-D740-00F45FE4110D"/>
+</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -154,6 +157,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="EBE31EB3-C9AF-95B5-8E46-1C0DE713F259"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CEDC3AC3-C1D8-540B-10DF-02D043F4D29B" name="transaccion_cuenta_FK">
+<createdBy>osmar</createdBy>
+<createdTime>2024-04-19 16:09:17 UTC</createdTime>
+<ownerDesignName>modelos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0FF843F1-B032-1A84-65A3-9F1532A802C3"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

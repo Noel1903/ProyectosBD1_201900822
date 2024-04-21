@@ -189,6 +189,11 @@ DELIMITER ;
 
 
 #Funcion para verificar si existe numero cuenta
+
+
+
+
+#Funcion para ingresar la cuenta
 DELIMITER //
 CREATE PROCEDURE registrarCuenta(
 IN id_cuenta BIGINT,
@@ -216,6 +221,9 @@ proc_cuenta:BEGIN
 	ELSEIF NOT existe_id_cliente(id_cliente) THEN
 		SELECT 'Error: El cliente no existe' as Error;
         LEAVE proc_cuenta;
+	ELSEIF NOT monto_apertura = saldo_cuenta THEN
+		SELECT 'Error: El saldo de la cuenta debe ser igual al monto de apertura' as Error;
+        LEAVE proc_cuenta;
 	ELSE
 		IF length(fecha_apertura) > 0 THEN
 			INSERT INTO cuenta (id_cuenta,monto_apertura,saldo_cuenta,descripcion,fecha_apertura,otros_detalles,tipo_cuenta,id_cliente)
@@ -223,7 +231,7 @@ proc_cuenta:BEGIN
             SELECT 'Se han ingresado datos en  la tabla cuenta.';
 		ELSE
 			INSERT INTO cuenta (id_cuenta,monto_apertura,saldo_cuenta,descripcion,fecha_apertura,otros_detalles,tipo_cuenta,id_cliente)
-            VALUES (id_cuenta,monto_apertura,saldo_cuenta,descripcion,DATE_FORMAT(CURDATE(), '%d/%m/%Y'),otros_detalles,tipo_cuenta,id_cliente);
+            VALUES (id_cuenta,monto_apertura,saldo_cuenta,descripcion,CURDATE(),otros_detalles,tipo_cuenta,id_cliente);
 			SELECT 'Se han ingresado datos en  la tabla cuenta.';
 		END IF;
 	END IF;
@@ -365,7 +373,7 @@ proc_compra:BEGIN
 						LEAVE proc_compra;
 					ELSE
 						INSERT INTO compra (id_compra,fecha,importe_compra,otros_detalles,codigo_prod_serv,id_cliente)
-						VALUES (id_compra,STR_TO_DATE(fecha, '%d/%m/%Y'),importe_compra,otros_detalles,codigo_prod_serv,id_cliente);
+						VALUES (id_compra,STR_TO_DATE(fecha, '%d/%m/%Y'),retornar_monto_servicio(codigo_prod_serv),otros_detalles,codigo_prod_serv,id_cliente);
 						SELECT 'Datos ingresados a la tabla compra';
 						LEAVE proc_compra;
 					END IF;
@@ -513,3 +521,414 @@ DELIMITER ;
 call registrarTipoTransaccion(1, 'Compra', 'Transacción de compra');
 call registrarTipoTransaccion(2, 'Deposito', 'Transacción de deposito');
 call registrarTipoTransaccion(3, 'Debito', 'Transacción de debito');
+
+
+#Trigger del historial de transaccion
+
+DELIMITER //
+CREATE TRIGGER historial_transaccion AFTER INSERT ON transaccion
+FOR EACH ROW
+BEGIN
+	SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,'Se ha realizado una accion en la tabla transaccion','INSERT');
+END //
+DELIMITER ;
+
+
+
+
+#Existe tipo_transaccion
+DELIMITER //
+CREATE FUNCTION existe_tipo_transaccion(id INTEGER) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+    DECLARE existe BOOLEAN;
+    SELECT EXISTS (SELECT 1 FROM tipo_transaccion WHERE codigo_transaccion = id) INTO existe;
+    RETURN existe;
+END //
+DELIMITER ;
+
+
+#Existe compra_debito_deposito
+DELIMITER //
+CREATE FUNCTION existe_c_d_d(id INTEGER) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+    DECLARE existe BOOLEAN;
+    SELECT EXISTS (SELECT 1 FROM compra WHERE id_compra = id) INTO existe;
+    IF existe THEN
+		RETURN existe;
+	ELSE
+		SELECT EXISTS (SELECT 1 FROM debito WHERE id_debito = id) INTO existe;
+        IF existe THEN
+			RETURN existe;
+		ELSE
+			SELECT EXISTS (SELECT 1 FROM deposito WHERE id_deposito = id) INTO existe;
+            RETURN existe;
+		END IF;
+	END IF;
+END //
+DELIMITER ;
+
+
+#funcion para devolver saldo de cuenta
+DELIMITER //
+CREATE FUNCTION retornar_saldo_cuenta(id BIGINT) RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE saldo_c INTEGER;
+    SELECT saldo_cuenta INTO saldo_c FROM cuenta WHERE id_cuenta = id;
+    RETURN saldo_c;
+END //
+DELIMITER ;
+
+
+#funcion para devolver monto compra
+DELIMITER //
+CREATE FUNCTION retornar_monto_compra(id INTEGER) RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE monto INTEGER;
+    SELECT importe_compra INTO monto FROM compra WHERE id_compra = id;
+    RETURN monto;
+END //
+DELIMITER ;
+
+
+#funcion para devolver monto debito
+DELIMITER //
+CREATE FUNCTION retornar_monto_debito(id INTEGER) RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE monto_d INTEGER;
+    SELECT monto INTO monto_d FROM debito WHERE id_debito = id;
+    RETURN monto;
+END //
+DELIMITER ;
+
+
+#funcion para devolver monto deposito
+DELIMITER //
+CREATE FUNCTION retornar_monto_deposito(id INTEGER) RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE monto_d INTEGER;
+    SELECT monto INTO monto_d FROM deposito WHERE id_deposito = id;
+    RETURN monto;
+END //
+DELIMITER ;
+
+#funcion para historial de actualizacion
+DELIMITER //
+CREATE PROCEDURE actualizar_historial(nombre_t VARCHAR(200))
+BEGIN
+    SELECT NOW() INTO @fecha;
+    INSERT INTO historial (fecha,descripcion,tipo)
+    VALUES (@fecha,CONCAT('Se ha realizado una accion en la tabla ',nombre_t),'UPDATE');
+END //
+DELIMITER ;
+
+
+
+#Funcion almacenada para la transaccion
+
+DELIMITER //
+
+CREATE PROCEDURE asignarTransaccion(
+IN id_transaccion INTEGER,
+IN fecha VARCHAR(100),
+IN otros_detalles VARCHAR(40),
+IN id_tipo_transaccion INTEGER,
+IN id_c_d_d INTEGER,
+IN no_cuenta BIGINT
+)
+prod_transa:BEGIN
+	IF NOT existe_tipo_transaccion(id_tipo_transaccion) THEN
+		SELECT 'Error: El tipo de transaccion no esta definido' as Error;
+        LEAVE prod_transa;
+	ELSEIF NOT existe_c_d_d(id_c_d_d) THEN
+		SELECT 'Error: El id_compra,id_debito o id_deposito no existe' as Error;
+        LEAVE prod_transa;
+	ELSEIF NOT existe_cuenta(no_cuenta) THEN
+		SELECT 'Error: El numero de cuenta no existe' as Error;
+        LEAVE prod_transa;
+	ELSE
+		CASE id_tipo_transaccion
+			WHEN 1 THEN
+				IF retornar_saldo_cuenta(no_cuenta) >= retornar_monto_compra(id_c_d_d) THEN
+					INSERT INTO transaccion (id_transaccion,fecha,otros_detalles,id_tipo_transaccion,id_compra,id_deposito,id_debito,no_cuenta)
+                    VALUES (id_transaccion,STR_TO_DATE(fecha, '%d/%m/%Y'),otros_detalles,id_tipo_transaccion,id_c_d_d,0,0,no_cuenta);
+                    UPDATE cuenta
+                    SET saldo_cuenta = saldo_cuenta - retornar_monto_compra(id_c_d_d)
+                    WHERE id_cuenta = no_cuenta;
+                    call actualizar_historial('cuenta');
+                    SELECT 'Datos almacenados en la tabla transaccion';
+                    LEAVE prod_transa;
+				ELSE
+                    SELECT 'Error: el monto de compra es mayor al saldo de la cuenta' as Error;
+                    LEAVE prod_transa;
+				END IF;
+			WHEN 2 THEN
+				INSERT INTO transaccion (id_transaccion,fecha,otros_detalles,id_tipo_transaccion,id_compra,id_deposito,id_debito,no_cuenta)
+				VALUES (id_transaccion,STR_TO_DATE(fecha, '%d/%m/%Y'),otros_detalles,id_tipo_transaccion,0,id_c_d_d,0,no_cuenta);
+				UPDATE cuenta
+				SET saldo_cuenta = saldo_cuenta + retornar_monto_deposito(id_c_d_d)
+				WHERE id_cuenta = no_cuenta;
+				call actualizar_historial('cuenta');
+				SELECT 'Datos almacenados en la tabla transaccion';
+				LEAVE prod_transa;
+			WHEN 3 THEN
+				IF retornar_saldo_cuenta(no_cuenta) >= retornar_monto_debito(id_c_d_d) THEN
+					INSERT INTO transaccion (id_transaccion,fecha,otros_detalles,id_tipo_transaccion,id_compra,id_deposito,id_debito,no_cuenta)
+                    VALUES (id_transaccion,STR_TO_DATE(fecha, '%d/%m/%Y'),otros_detalles,id_tipo_transaccion,0,0,id_c_d_d,no_cuenta);
+                    UPDATE cuenta
+                    SET saldo_cuenta = saldo_cuenta - retornar_monto_debito(id_c_d_d)
+                    WHERE id_cuenta = no_cuenta;
+                    call actualizar_historial('cuenta');
+                    SELECT 'Datos almacenados en la tabla transaccion';
+                    LEAVE prod_transa;
+				ELSE
+                    SELECT 'Error: el monto de debito es mayor al saldo de la cuenta' as Error;
+                    LEAVE prod_transa;
+				END IF;
+        END CASE;
+    END IF;
+END //
+DELIMITER ;
+
+
+
+#funcion para devolver monto del servicio
+DELIMITER //
+CREATE FUNCTION retornar_monto_servicio(id INTEGER) RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE monto INTEGER;
+    SELECT costo INTO monto FROM producto_servicio WHERE codigo_prod_serv = id;
+    RETURN monto;
+END //
+DELIMITER ;
+
+
+
+
+#**********************************************Procedimientos almacenados de las consultas******************************************************************
+
+#Consulta de saldo de cliente
+DELIMITER //
+CREATE PROCEDURE consultarSaldoCliente(
+IN no_cuenta BIGINT
+)
+BEGIN
+	IF NOT EXISTS (SELECT * FROM cuenta WHERE id_cuenta = no_cuenta) THEN
+        SELECT 'Error: La cuenta no existe' as Error;
+    ELSE
+		SELECT cli.nombre,cli.tipo_cliente,ticli.nombre,cuen.tipo_cuenta,ticuen.nombre,cuen.saldo_cuenta,cuen.monto_apertura
+		FROM cliente cli
+		INNER JOIN cuenta cuen
+        ON cli.id_cliente = cuen.id_cliente
+        INNER JOIN tipo_cliente ticli
+        ON cli.tipo_cliente = ticli.id_tipo
+        INNER JOIN tipo_cuenta ticuen
+        ON cuen.tipo_cuenta = ticuen.codigo
+        WHERE cuen.id_cuenta = no_cuenta;
+	END IF;
+END //
+DELIMITER ;
+call consultarSaldoCliente(3030206081);
+
+
+
+#Consulta de cliente
+DELIMITER //
+CREATE PROCEDURE consultarCliente(
+IN id_c INTEGER
+)
+BEGIN
+	IF NOT EXISTS (SELECT * FROM cliente WHERE id_cliente = id_c) THEN
+        SELECT 'Error: el cliente no existe' as Error;
+    ELSE
+		SELECT cli.id_cliente,CONCAT(cli.nombre,' ',cli.apellidos) AS NombreCompleto,cli.fecha_creacion,cli.usuario,cli.telefono,cli.correo,
+        COUNT(cuen.id_cuenta) as no_cuentas,
+        cuen.tipo_cuenta,ticuen.nombre
+        FROM cliente cli
+        LEFT JOIN cuenta cuen
+        ON cli.id_cliente = cuen.id_cliente
+        LEFT JOIN tipo_cuenta ticuen
+        ON cuen.tipo_cuenta = ticuen.codigo
+		WHERE cli.id_cliente = id_c
+        GROUP BY cli.id_cliente, cli.nombre, cli.apellidos, cli.fecha_creacion, cli.usuario,cuen.tipo_cuenta;
+	END IF;
+END //
+DELIMITER ;
+
+call consultarCliente(1001);
+
+
+#Consulta de movimientos de cliente
+DELIMITER //
+CREATE PROCEDURE consultarMovsCliente(
+IN id_c INTEGER
+)
+BEGIN
+	IF NOT EXISTS (SELECT * FROM cliente WHERE id_cliente = id_c) THEN
+        SELECT 'Error: el cliente no existe' as Error;
+    ELSE
+		SELECT tran.id_transaccion,tran.id_tipo_transaccion,titran.nombre,tran.no_cuenta,cuen.tipo_cuenta,
+        CASE
+			WHEN tran.id_compra IS NOT NULL THEN compra.importe_compra
+			WHEN tran.id_debito IS NOT NULL THEN debito.monto
+			WHEN tran.id_deposito IS NOT NULL THEN deposito.monto
+            ELSE NULL
+        END AS monto
+        FROM transaccion tran
+        INNER JOIN tipo_transaccion titran
+        ON tran.id_tipo_transaccion = titran.codigo_transaccion
+        INNER JOIN cuenta cuen
+        ON tran.no_cuenta = cuen.id_cuenta
+        LEFT JOIN 
+            compra 
+            ON tran.id_compra = compra.id_compra
+        LEFT JOIN 
+            debito 
+            ON tran.id_debito = debito.id_debito
+        LEFT JOIN 
+            deposito 
+            ON tran.id_deposito = deposito.id_deposito;
+	END IF;
+END //
+DELIMITER ;
+call consultarMovsCliente(1001);
+
+
+
+#Consultar clientes por tipo de cuenta
+DELIMITER //
+CREATE PROCEDURE consultarTipoCuentas(
+IN id_tipo_c INTEGER
+)
+BEGIN
+	IF NOT EXISTS (SELECT * FROM tipo_cuenta WHERE codigo = id_tipo_c) THEN
+        SELECT 'Error: el tipo de cuenta no existe' as Error;
+    ELSE
+		SELECT ticuen.codigo,ticuen.nombre,
+        COUNT(cuen.id_cuenta) as cantidad_clientes_del_mismo_tipo
+        FROM tipo_cuenta ticuen
+        LEFT JOIN cuenta cuen
+		ON ticuen.codigo = cuen.tipo_cuenta
+        WHERE ticuen.codigo = id_tipo_c
+        GROUP BY ticuen.codigo;
+    END IF;
+	
+END //
+DELIMITER ;
+call consultarTipoCuentas(3);
+
+
+
+
+#Consultar movimientos generales por rango de fechas
+DELIMITER //
+CREATE PROCEDURE consultarMovsGenFech(
+IN fechaInicio VARCHAR(100),
+IN fechaFin VARCHAR(100)
+)
+BEGIN
+	DECLARE fechaI DATE;
+    DECLARE fechaF DATE;
+    SET fechaI = STR_TO_DATE(fechaInicio,'%d/%m/%Y');
+    SET fechaF = STR_TO_DATE(fechaFin,'%d/%m/%Y');
+	IF fechaI IS NOT NULL AND fechaF IS NOT NULL THEN
+		SELECT tran.id_transaccion,tran.id_tipo_transaccion,titran.nombre,cli.nombre,cuen.id_cuenta,cuen.tipo_cuenta,tran.fecha,
+        CASE
+			WHEN tran.id_compra IS NOT NULL THEN compra.importe_compra
+			WHEN tran.id_debito IS NOT NULL THEN debito.monto
+			WHEN tran.id_deposito IS NOT NULL THEN deposito.monto
+            ELSE NULL
+        END AS monto,
+        tran.otros_detalles
+        FROM transaccion tran
+        INNER JOIN tipo_transaccion titran
+		ON tran.id_tipo_transaccion = titran.codigo_transaccion
+        INNER JOIN cuenta cuen
+        ON tran.no_cuenta = cuen.id_cuenta
+        INNER JOIN cliente cli
+        ON cuen.id_cliente = cli.id_cliente
+        LEFT JOIN 
+            compra 
+            ON tran.id_compra = compra.id_compra
+        LEFT JOIN 
+            debito 
+            ON tran.id_debito = debito.id_debito
+        LEFT JOIN 
+            deposito 
+            ON tran.id_deposito = deposito.id_deposito
+		WHERE tran.fecha >= fechaI AND tran.fecha<=fechaF;
+    ELSE
+		SELECT 'Fechas incorrectas';
+    END IF;
+END //
+DELIMITER ;
+call consultarMovsGenFech('08/04/2024','15/04/2024');
+
+#Consulta de Movimientos por Rango de Fechas para un Cliente Específico
+DELIMITER //
+CREATE PROCEDURE consultarMovsFechClien(
+IN cliente_ INTEGER,
+IN fechaInicio VARCHAR(100),
+IN fechaFin VARCHAR(100)
+)
+proc_con_cli:BEGIN
+	DECLARE fechaI DATE;
+    DECLARE fechaF DATE;
+    SET fechaI = STR_TO_DATE(fechaInicio,'%d/%m/%Y');
+    SET fechaF = STR_TO_DATE(fechaFin,'%d/%m/%Y');
+    IF NOT EXISTS (SELECT * FROM cliente WHERE id_cliente = cliente_) THEN
+        SELECT 'Error: el cliente no existe' as Error;
+        LEAVE proc_con_cli;
+	END IF;
+	IF fechaI IS NOT NULL AND fechaF IS NOT NULL THEN
+		SELECT tran.id_transaccion,tran.id_tipo_transaccion,titran.nombre,cli.nombre,cuen.id_cuenta,cuen.tipo_cuenta,tran.fecha,
+        CASE
+			WHEN tran.id_compra IS NOT NULL THEN compra.importe_compra
+			WHEN tran.id_debito IS NOT NULL THEN debito.monto
+			WHEN tran.id_deposito IS NOT NULL THEN deposito.monto
+            ELSE NULL
+        END AS monto,
+        tran.otros_detalles
+        FROM transaccion tran
+        INNER JOIN tipo_transaccion titran
+		ON tran.id_tipo_transaccion = titran.codigo_transaccion
+        INNER JOIN cuenta cuen
+        ON tran.no_cuenta = cuen.id_cuenta
+        INNER JOIN cliente cli
+        ON cuen.id_cliente = cli.id_cliente
+        LEFT JOIN 
+            compra 
+            ON tran.id_compra = compra.id_compra
+        LEFT JOIN 
+            debito 
+            ON tran.id_debito = debito.id_debito
+        LEFT JOIN 
+            deposito 
+            ON tran.id_deposito = deposito.id_deposito
+		WHERE tran.fecha >= fechaI AND tran.fecha<=fechaF AND cli.id_cliente = cliente_;
+    ELSE
+		SELECT 'Fechas incorrectas';
+    END IF;
+END //
+DELIMITER ;
+call consultarMovsFechClien(1001,'08/04/2024','15/04/2024');
+
+
+#Consultar productos y servicios
+DELIMITER //
+CREATE PROCEDURE consultarDesasignacion(
+)
+BEGIN
+	SELECT codigo_prod_serv,descripcion_prod_serv,tipo
+    FROM producto_servicio;
+END //
+DELIMITER ;
+call consultarDesasignacion();
