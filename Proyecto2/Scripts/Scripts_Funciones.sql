@@ -67,6 +67,11 @@ BEGIN
 END //
 DELIMITER ; 
 
+
+
+
+
+
 #Procedimiento almacenado para guardar el tipo_cliente
 DELIMITER //
 
@@ -75,7 +80,11 @@ IN id INTEGER
 IN nombre VARCHAR(50),
 IN descripcion VARCHAR(100)
 )
-BEGIN
+proc_tiCli:BEGIN
+	IF existe_tipo_cliente(id) THEN
+		SELECT 'Error: El tipo cliente ya existe' as Error;
+		LEAVE proc_tiCli;
+	END IF;
 	DECLARE contiene_numeros BOOLEAN;
     SET contiene_numeros = validar_texto(descripcion);
     
@@ -119,7 +128,7 @@ CREATE PROCEDURE registrarCliente(
 IN id_cliente INTEGER,
 IN nombre VARCHAR(40),
 IN apellidos VARCHAR(40),
-IN telefono VARCHAR(26),
+IN telefono VARCHAR(200),
 IN correo VARCHAR(40),
 IN usuario VARCHAR(40),
 IN contraseña VARCHAR(200),
@@ -168,7 +177,11 @@ IN id INTEGER,
 IN nombre VARCHAR(50),
 IN descripcion VARCHAR(100)
 )
-BEGIN
+proc_tipC:BEGIN
+	IF nombre or descripcion is  THEN
+		SELECT 'Error: El nombre o la descripcion estan vacios' as Error;
+		LEAVE proc_tipC;
+	END IF;
 	INSERT INTO tipo_cuenta (nombre,descripcion)
     VALUES (nombre,descripcion);
     SELECT('Se han ingresado datos a la tabla tipo_cuenta');
@@ -228,7 +241,7 @@ proc_cuenta:BEGIN
 	ELSE
 		IF length(fecha_apertura) > 0 THEN
 			INSERT INTO cuenta (id_cuenta,monto_apertura,saldo_cuenta,descripcion,fecha_apertura,otros_detalles,tipo_cuenta,id_cliente)
-            VALUES (id_cuenta,monto_apertura,saldo_cuenta,descripcion,STR_TO_DATE(fecha_apertura, '%d/%m/%Y'),otros_detalles,tipo_cuenta,id_cliente);
+            VALUES (id_cuenta,monto_apertura,saldo_cuenta,descripcion,STR_TO_DATE(fecha_apertura, '%d/%m/%Y %H:%i:%s'),otros_detalles,tipo_cuenta,id_cliente);
             SELECT 'Se han ingresado datos en  la tabla cuenta.';
 		ELSE
 			INSERT INTO cuenta (id_cuenta,monto_apertura,saldo_cuenta,descripcion,fecha_apertura,otros_detalles,tipo_cuenta,id_cliente)
@@ -288,6 +301,10 @@ IN costo DECIMAL(12,2),
 IN descripcion_prod_serv varchar(100)
 )
 proc_prod_serv:BEGIN
+	IF costo <0 THEN
+		SELECT 'Error: El saldo debe ser mayor a 0';
+		LEAVE proc_prod_serv;
+	END IF;
 	CASE tipo 
 		WHEN  1 THEN
 			IF costo>0 THEN
@@ -604,7 +621,7 @@ DETERMINISTIC
 BEGIN
     DECLARE monto_d INTEGER;
     SELECT monto INTO monto_d FROM debito WHERE id_debito = id;
-    RETURN monto;
+    RETURN monto_d;
 END //
 DELIMITER ;
 
@@ -616,7 +633,7 @@ DETERMINISTIC
 BEGIN
     DECLARE monto_d INTEGER;
     SELECT monto INTO monto_d FROM deposito WHERE id_deposito = id;
-    RETURN monto;
+    RETURN monto_d;
 END //
 DELIMITER ;
 
@@ -933,3 +950,37 @@ BEGIN
 END //
 DELIMITER ;
 call consultarDesasignacion();
+
+
+call crearProductoServicio(1,1,10.00,'Servicio de tarjeta de debito');
+call crearProductoServicio(2,1,10.00,'Servicio de chequera');
+call crearProductoServicio(3,1,400.00,'Servicio de asesoramiento financiero');
+call crearProductoServicio(4,1,5.00,'Servicio de banca personal');
+call crearProductoServicio(5,1,30.00,'Seguro de vida');
+call crearProductoServicio(6,1,100.00,'Seguro de vida plus');
+call crearProductoServicio(7,1,300.00,'Seguro de automóvil');
+call crearProductoServicio(8,1,500.00,'Seguro de automóvil plus');
+call crearProductoServicio(9,1,0.05,'Servicio de deposito');
+call crearProductoServicio(10,1,0.10,'Servicio de Debito');
+
+
+call crearProductoServicio(11,2,0,'Pago de energía Eléctrica (EEGSA)');
+call crearProductoServicio(12,2,0,'Pago de agua potable (Empagua)');
+call crearProductoServicio(13,2,0,'Pago de Matricula USAC');
+call crearProductoServicio(14,2,0,'Pago de curso vacaciones USAC');
+call crearProductoServicio(15,2,0,'Pago de servicio de internet');
+call crearProductoServicio(16,2,0,'Servicio de suscripción plataformas streaming');
+call crearProductoServicio(17,2,0,'Servicios Cloud');
+
+
+DELETE FROM producto_servicio WHERE codigo_prod_serv = 18;
+DELETE FROM producto_servicio WHERE codigo_prod_serv = 19;
+
+
+DELETE FROM tipo_cliente WHERE id_tipo = 5;
+DELETE FROM tipo_cliente WHERE id_tipo = 6;
+ALTER TABLE tipo_cliente AUTO_INCREMENT 4;
+
+DELETE FROM tipo_cuenta WHERE codigo = 7;
+DELETE FROM tipo_cuenta WHERE codigo = 8;
+ALTER TABLE tipo_cuenta AUTO_INCREMENT 6;
