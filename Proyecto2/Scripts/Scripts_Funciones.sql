@@ -71,6 +71,7 @@ DELIMITER ;
 DELIMITER //
 
 CREATE PROCEDURE registrarTipoCliente(
+IN id INTEGER
 IN nombre VARCHAR(50),
 IN descripcion VARCHAR(100)
 )
@@ -927,7 +928,7 @@ DELIMITER //
 CREATE PROCEDURE consultarDesasignacion(
 )
 BEGIN
-	SELECT codigo_prod_serv,descripcion_prod_serv,tipo
+	SELECT *
     FROM producto_servicio;
 END //
 DELIMITER ;
